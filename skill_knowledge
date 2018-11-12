@@ -9,3 +9,67 @@ data = ((address[i].upper() if i > 9 else address.lower()) for i in range(len(ad
 # 可以使用"".join(data)
 # 也可以转换为一个列表[data]
 
+
+
+#装饰器与生成器
+def param(parameter):
+  def decorator(to_wrap):
+    @functools.wraps()
+    def wrapper(*args, **kwargs):
+      result = to_wrap(*args, **kwargs)
+      returnType = type(args[parameter])
+      return returnType(result)
+    return wrapper
+   return decorator
+   
+ @param(2) 
+ def foo(*args):
+  yield 2
+  yield 3
+  yield 4
+# 装饰器装饰的函数是一个生成器所以result接收的是一个生成器
+
+
+# yield的用法
+
+def foo():
+  lt = []
+  yield lt.append(1), lt
+  yield lt
+  yield lt.append(2), lt
+  yield lt
+  
+ for item in foo():
+    print(item)
+>> (None, [1]), [1], (None, [1, 2]), [1, 2]
+
+print(list(foo())
+[(None, [1, 2]), [1, 2], (None, [1, 2]), [1, 2]]
+
+
+ #callable函数的应用, 当加入__call__方法时， 创建的对象都能调用
+ 
+ class A():
+    def __init__(self, val):
+      self.val = val     
+    def __call__(self, val):
+      return self.val + val
+  
+ a = A(5)
+ a(5)
+ print(a(5))
+ >> 10
+ 
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
