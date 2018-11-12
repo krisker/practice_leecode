@@ -1,0 +1,11 @@
+a = int("122", base=10)
+print(a)
+# Default base = 10  specify base>=2 base<= 36 or 0 
+# base 表示n进制
+
+address = "jakkakjgjkga"
+data = ((address[i].upper() if i > 9 else address.lower()) for i in range(len(address)))
+# data是一个生成器
+# 可以使用"".join(data)
+# 也可以转换为一个列表[data]
+
